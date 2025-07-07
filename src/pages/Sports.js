@@ -204,6 +204,7 @@ export default function Sports({ onNavigate }: SportsProps) {
                           : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700'
                       }`}>
                         {game.isLive && <span className="inline-block w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></span>}
+                        }
                         {game.status}
                       </span>
                     </div>
