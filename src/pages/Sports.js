@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, TrendingUp, ArrowRight, Trophy, Target, Zap } from 'lucide-react';
+import { Clock, TrendingUp, ArrowRight, Trophy, Target, Zap, Eye, MessageCircle, Share2, Medal } from 'lucide-react';
 
 interface SportsProps {
   onNavigate: (page: string) => void;
@@ -13,7 +13,9 @@ export default function Sports({ onNavigate }: SportsProps) {
       image: "https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       category: "Athletics",
       readTime: "3 min read",
-      date: "June 20, 2025"
+      date: "June 20, 2025",
+      views: "18.7K",
+      comments: 124
     },
     {
       title: "Harambee Stars Qualify for AFCON 2026 After Victory Over Tanzania",
@@ -21,7 +23,9 @@ export default function Sports({ onNavigate }: SportsProps) {
       image: "https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       category: "Football",
       readTime: "5 min read",
-      date: "June 19, 2025"
+      date: "June 19, 2025",
+      views: "22.3K",
+      comments: 156
     },
     {
       title: "Faith Kipyegon Breaks 1500m World Record at Diamond League Meeting",
@@ -29,7 +33,9 @@ export default function Sports({ onNavigate }: SportsProps) {
       image: "https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       category: "Athletics",
       readTime: "4 min read",
-      date: "June 18, 2025"
+      date: "June 18, 2025",
+      views: "31.2K",
+      comments: 203
     }
   ];
 
@@ -40,7 +46,8 @@ export default function Sports({ onNavigate }: SportsProps) {
       homeScore: 2,
       awayScore: 1,
       status: "Final",
-      sport: "KPL"
+      sport: "KPL",
+      isLive: false
     },
     {
       homeTeam: "Kenya",
@@ -48,7 +55,8 @@ export default function Sports({ onNavigate }: SportsProps) {
       homeScore: 1,
       awayScore: 0,
       status: "2nd Half",
-      sport: "CECAFA"
+      sport: "CECAFA",
+      isLive: true
     },
     {
       homeTeam: "Tusker FC",
@@ -56,7 +64,8 @@ export default function Sports({ onNavigate }: SportsProps) {
       homeScore: 0,
       awayScore: 0,
       status: "1st Half",
-      sport: "KPL"
+      sport: "KPL",
+      isLive: true
     }
   ];
 
@@ -65,95 +74,70 @@ export default function Sports({ onNavigate }: SportsProps) {
       teams: "Harambee Stars vs Ethiopia",
       time: "4:00 PM EAT",
       date: "Sunday",
-      sport: "AFCON Qualifier"
+      sport: "AFCON Qualifier",
+      importance: "high"
     },
     {
       teams: "Gor Mahia vs Simba SC",
       time: "3:00 PM EAT",
       date: "Saturday",
-      sport: "CAF Champions League"
+      sport: "CAF Champions League",
+      importance: "high"
     },
     {
       teams: "Kenya vs Tanzania",
       time: "2:00 PM EAT",
       date: "Next Week",
-      sport: "East Africa Cup"
+      sport: "East Africa Cup",
+      importance: "medium"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <button 
-                onClick={() => onNavigate('home')}
-                className="text-xl font-bold hover:text-gray-300 transition-colors"
-              >
-                DailyNews Kenya
-              </button>
-            </div>
-            <nav className="hidden md:block">
-              <div className="flex items-center space-x-8">
-                <button 
-                  onClick={() => onNavigate('home')}
-                  className="text-white hover:text-gray-300 transition-colors font-medium"
-                >
-                  Home
-                </button>
-                <button 
-                  onClick={() => onNavigate('politics')}
-                  className="text-white hover:text-gray-300 transition-colors font-medium"
-                >
-                  Politics
-                </button>
-                <button 
-                  onClick={() => onNavigate('sports')}
-                  className="text-green-300 font-medium border-b-2 border-green-300 pb-1"
-                >
-                  Sports
-                </button>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50">
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <Trophy className="w-8 h-8 text-green-600" />
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Kenya Sports
-            </h1>
+        <div className="mb-12 animate-fade-in-up">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="p-3 bg-gradient-to-r from-green-100 to-green-200 rounded-2xl">
+              <Trophy className="w-10 h-10 text-green-600" />
+            </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+                Kenya Sports
+              </h1>
+              <p className="text-xl text-gray-600">
+                Latest scores, highlights, and breaking news from Kenyan sports
+              </p>
+            </div>
           </div>
-          <p className="text-lg text-gray-600">
-            Get the latest scores, highlights, and breaking news from Kenyan and international sports
-          </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Sports Content */}
           <div className="lg:col-span-2 space-y-8">
             {sportsNews.map((article, index) => (
-              <article key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <article key={index} className="group bg-white rounded-2xl overflow-hidden shadow-elegant hover:shadow-elegant-hover transition-all duration-500 border border-gray-100">
                 <div className="md:flex">
-                  <div className="md:w-1/3">
-                    <div className="aspect-video md:aspect-square overflow-hidden">
+                  <div className="md:w-2/5">
+                    <div className="aspect-video md:aspect-square overflow-hidden relative">
                       <img 
                         src={article.image} 
                         alt={article.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {article.category === 'Athletics' && (
+                        <div className="absolute top-4 left-4">
+                          <Medal className="w-6 h-6 text-yellow-500" />
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className="md:w-2/3 p-6">
-                    <div className="flex items-center gap-4 mb-3 text-sm text-gray-500">
-                      <span className="px-2 py-1 bg-green-100 text-green-700 rounded-md font-medium">
+                  <div className="md:w-3/5 p-8">
+                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                      <span className="px-3 py-1 bg-gradient-to-r from-green-100 to-green-200 text-green-700 rounded-full font-semibold">
                         {article.category}
                       </span>
                       <span className="flex items-center gap-1">
@@ -163,18 +147,34 @@ export default function Sports({ onNavigate }: SportsProps) {
                       <span>{article.date}</span>
                     </div>
                     
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+                    <h2 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-green-600 transition-colors">
                       {article.title}
                     </h2>
                     
-                    <p className="text-gray-600 leading-relaxed mb-4">
+                    <p className="text-gray-600 leading-relaxed mb-6">
                       {article.summary}
                     </p>
                     
-                    <button className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium transition-colors">
-                      Read Full Article
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center justify-between">
+                      <button className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                        Read Article
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                      
+                      <div className="flex items-center gap-4 text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Eye className="w-4 h-4" />
+                          <span className="text-sm">{article.views}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MessageCircle className="w-4 h-4" />
+                          <span className="text-sm">{article.comments}</span>
+                        </div>
+                        <button className="hover:text-green-600 transition-colors">
+                          <Share2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -182,34 +182,39 @@ export default function Sports({ onNavigate }: SportsProps) {
           </div>
 
           {/* Sports Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-8">
             {/* Live Scores */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-red-500" />
+            <div className="bg-white rounded-2xl p-8 shadow-elegant border border-gray-100 sticky top-24">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-red-100 to-red-200 rounded-lg">
+                  <Zap className="w-6 h-6 text-red-600" />
+                </div>
                 Live Scores
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {liveScores.map((game, index) => (
-                  <div key={index} className="bg-white rounded-lg p-4 border border-gray-200">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs font-medium text-gray-500 uppercase">
+                  <div key={index} className="bg-gradient-to-r from-gray-50 to-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-300">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                         {game.sport}
                       </span>
-                      <span className={`text-xs font-medium px-2 py-1 rounded ${
-                        game.status === 'Final' ? 'bg-gray-100 text-gray-700' : 'bg-red-100 text-red-700'
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                        game.isLive 
+                          ? 'bg-gradient-to-r from-red-100 to-red-200 text-red-700' 
+                          : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700'
                       }`}>
+                        {game.isLive && <span className="inline-block w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></span>}
                         {game.status}
                       </span>
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium text-gray-900">{game.awayTeam}</span>
-                        <span className="font-bold text-lg">{game.awayScore}</span>
+                        <span className="font-semibold text-gray-900">{game.awayTeam}</span>
+                        <span className="font-bold text-2xl text-gray-900">{game.awayScore}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium text-gray-900">{game.homeTeam}</span>
-                        <span className="font-bold text-lg">{game.homeScore}</span>
+                        <span className="font-semibold text-gray-900">{game.homeTeam}</span>
+                        <span className="font-bold text-2xl text-gray-900">{game.homeScore}</span>
                       </div>
                     </div>
                   </div>
@@ -218,25 +223,32 @@ export default function Sports({ onNavigate }: SportsProps) {
             </div>
 
             {/* Upcoming Games */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <Target className="w-5 h-5 text-gray-600" />
+            <div className="bg-white rounded-2xl p-8 shadow-elegant border border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg">
+                  <Target className="w-6 h-6 text-blue-600" />
+                </div>
                 Upcoming Games
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {upcomingGames.map((game, index) => (
-                  <div key={index} className="group cursor-pointer hover:bg-white rounded-lg p-3 -m-3 transition-colors">
+                  <div key={index} className="group cursor-pointer hover:bg-gradient-to-r hover:from-gray-50 hover:to-green-50 rounded-xl p-4 -m-4 transition-all duration-300 border border-transparent hover:border-green-100">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
-                        <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-md text-xs font-medium mb-2 inline-block">
-                          {game.sport}
-                        </span>
-                        <h4 className="text-gray-900 font-medium leading-snug group-hover:text-green-600 transition-colors">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-700 rounded-full text-xs font-semibold">
+                            {game.sport}
+                          </span>
+                          {game.importance === 'high' && (
+                            <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                          )}
+                        </div>
+                        <h4 className="text-gray-900 font-semibold leading-snug group-hover:text-green-600 transition-colors mb-2">
                           {game.teams}
                         </h4>
-                        <p className="text-gray-500 text-sm mt-1">{game.date} • {game.time}</p>
+                        <p className="text-gray-500 text-sm">{game.date} • {game.time}</p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-colors flex-shrink-0 mt-1" />
+                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-green-500 group-hover:translate-x-1 transition-all duration-200 flex-shrink-0 mt-1" />
                     </div>
                   </div>
                 ))}
@@ -244,27 +256,35 @@ export default function Sports({ onNavigate }: SportsProps) {
             </div>
 
             {/* Sports Categories */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-gray-600" />
+            <div className="bg-white rounded-2xl p-8 shadow-elegant border border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg">
+                  <Trophy className="w-6 h-6 text-purple-600" />
+                </div>
                 Sports
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {[
-                  { name: 'Athletics', count: 45 },
-                  { name: 'Football', count: 32 },
-                  { name: 'Rugby', count: 18 },
-                  { name: 'Basketball', count: 12 },
-                  { name: 'Volleyball', count: 15 },
-                  { name: 'Cricket', count: 8 }
+                  { name: 'Athletics', count: 45, color: 'yellow' },
+                  { name: 'Football', count: 32, color: 'green' },
+                  { name: 'Rugby', count: 18, color: 'blue' },
+                  { name: 'Basketball', count: 12, color: 'orange' },
+                  { name: 'Volleyball', count: 15, color: 'purple' },
+                  { name: 'Cricket', count: 8, color: 'red' }
                 ].map((sport, index) => (
-                  <button key={index} className="w-full flex items-center justify-between p-3 hover:bg-white rounded-lg transition-colors group">
-                    <span className="text-gray-700 group-hover:text-green-600 font-medium">
-                      {sport.name}
-                    </span>
-                    <span className="text-gray-500 text-sm">
-                      {sport.count}
-                    </span>
+                  <button key={index} className="w-full flex items-center justify-between p-4 hover:bg-gradient-to-r hover:from-gray-50 hover:to-green-50 rounded-xl transition-all duration-300 group border border-transparent hover:border-green-100">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-3 h-3 bg-gradient-to-r from-${sport.color}-400 to-${sport.color}-600 rounded-full`}></div>
+                      <span className="text-gray-700 group-hover:text-green-600 font-semibold transition-colors">
+                        {sport.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-500 text-sm font-medium">
+                        {sport.count}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-colors" />
+                    </div>
                   </button>
                 ))}
               </div>
